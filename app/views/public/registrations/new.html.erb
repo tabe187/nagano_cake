@@ -1,0 +1,131 @@
+<main>
+<div class="container px-5 px-sm-0">
+
+      <h2>新規会員登録</h2>
+
+        <%= form_with model: @customer, url: customer_registration_path do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="row">
+        <div class="col-xl-3">
+          <p>名前</p>
+        </div>
+
+        <div class="col-xl-3">
+                <div class="field">
+                  <%= f.label :last_name, "(性)  " %>
+                  <%= f.text_field :last_name %>
+                </div>
+        </div>
+
+
+        <div class="col-xl-3">
+                <div class="field">
+                  <%= f.label :first_name, "(名)" %>
+                  <%= f.text_field :first_name %>
+                </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3">
+           <p>フリガナ</p>
+        </div>
+        <div class="col-xl-3">
+         <div class="field">
+          <%= f.label :last_name_kana, "(セイ)" %>
+          <%= f.text_field :last_name_kana %>
+         </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.label :first_name_kana, "(メイ)" %>
+            <%= f.text_field :first_name_kana %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3">
+                  <p>メールアドレス</p>
+        </div>
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.email_field :email, autocomplete: "email" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3">
+          <p>郵便番号(ハイフンなし)</p>
+        </div>
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.text_field :postal_code %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3">
+          <p>住所</p>
+        </div>
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.text_field :address %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3">
+          <p>電話番号(ハイフンなし)</p>
+        </div>
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.text_field :telephone_number %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xl-3">
+          <p>パスワード(6文字以上)</p>
+        </div>
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+       </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xl-3">
+          <p>パスワード(確認用)</p>
+        </div>
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xl-3">
+          <div class="field">
+            <%= f.submit "新規登録" %>
+          </div>
+        </div>
+      </div>
+     <% end %>
+
+
+      <h2>既に登録済みの方</h2>
+      <p><%= link_to "こちら", new_customer_session_path %>　からログインしてください。</p>
+      <%= render "public/shared/links" %>
+
+</div>
+</main>

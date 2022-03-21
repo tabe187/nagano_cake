@@ -1,0 +1,53 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.main-visual {
+  background-image: image-url('top.jpg');
+  background-size: cover;
+  height: 500px;
+  margin-top: 35px;
+  margin-bottom: 10px;
+}
+
+.main-visual-content {
+  font-family: Hiragino Maru Gothic ProN;
+  color: white;
+  font-size: 30px;
+  background-color: rgba( 0, 0, 0, 0.2);
+  text-align: center; /* 文字を中央揃えにする */
+  padding-top: 130px;
+  height: 500px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.image-wrap{
+    margin: 10px 5px;
+}
+
+.image-wrap img {
+    height: 100px;
+}
+
+.about-title-font-size {
+    font-size: 75px;
+}
+
+.about-text-font-size {
+    font-size: 25px;
+}

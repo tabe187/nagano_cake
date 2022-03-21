@@ -1,0 +1,13 @@
+<h1>注文履歴一覧</h1>
+
+<% @orders.each do |order| %>
+<%= order.created_at %><br>
+<%= order.postal_code %><br>
+<%= order.address%><br>
+<%= order.name%><br>
+   <% @order_details.each do |order_detail| %>
+      <%= order_detail.item.name%><br>
+   <% end %>    
+<%= order.status %><br>
+<%= link_to "表示する", order_path(order.id) %><br>
+<% end %>

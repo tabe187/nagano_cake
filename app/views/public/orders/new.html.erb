@@ -1,0 +1,53 @@
+<h1>注文情報入力</h1>
+<%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+<h4>支払方法</h4>
+<div class="radio-inline">
+    <%= f.radio_button :payment_method, :credit_card, checked: "checked" %>
+    <%= f.label :クレジットカード %>
+</div>
+
+<div class="radio-inline">
+    <%= f.radio_button :payment_method, :transfer %>
+    <%= f.label :銀行振込 %>
+</div>
+<%= f.hidden_field :shipping_cost, :value => 800 %>
+<h4>お届け先</h4>
+<div class="radio-inline">
+    <%= f.radio_button :select_address, :"0", checked: "checked" %>
+    <%= f.label :ご自身の住所 %>
+    <%= @customer.postal_code %>
+    <%= @customer.address %>
+    <%= @customer.last_name %>
+    <%= @customer.first_name %>
+</div>
+
+<div class="radio-inline">
+    <%= f.radio_button :select_address, :"1" %>
+    <%= f.label :登録済み住所から選択 %>
+    <%= f.collection_select :address_id, @customer.addresses, :id, :view_address_and_name %>
+</div>
+
+<div class="radio-inline">
+    <%= f.radio_button :select_address, :"2" %>
+    <%= f.label :新しいお届け先 %>
+
+
+      <div class="field">
+        <%= f.label :postal_code, "postal_code" %><br>
+        <%= f.text_field :postal_code %>
+      </div>
+
+      <div class="field">
+        <%= f.label :address, "address" %><br>
+        <%= f.text_field :address %>
+      </div>
+
+      <div class="field">
+        <%= f.label :name, "name" %><br>
+        <%= f.text_field :name %>
+      </div>
+ </div>
+
+ <%= f.submit '確認画面へ進む' %>
+
+<% end %>

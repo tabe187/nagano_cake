@@ -1,0 +1,31 @@
+<h1>注文情報確認</h1>
+<% @sam = 0 %>
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
+    <% @cart_items.each do |cart_item| %>
+    <%= image_tag cart_item.item.get_item_image(100,100) %>
+    <h3><%= cart_item.item.name %></h3>
+    <h3>単価(税込)：<%= (cart_item.item.price.to_i * 1.1).floor %>円</h3>
+    <h3>数量：<%= cart_item.amount %></h3>
+    <p>小計：<%= (cart_item.item.price.to_i * 1.1).floor * cart_item.amount %>円</p>
+    <% @sam += (cart_item.item.price.to_i * 1.1).floor * cart_item.amount %>
+    <% end %>
+<p>送料：800円</p>
+<%= f.hidden_field :shipping_cost, :value => 800 %>
+<p>合計：<%= @sam %>円</p>
+<p>請求金額：<%= @sam + 800 %>円</p>
+<%= f.hidden_field :billing_amount, :value => @sam + 800 %>
+
+<h2>支払方法</h2>
+<h3><%= @order.payment_method %></h3>
+<%= f.hidden_field :payment_method, :value => @order.payment_method %>
+<h2>お届け先</h2>
+<h3><%= @order.postal_code %></h3>
+<%= f.hidden_field :postal_code, :value => @order.postal_code %>
+<h3><%= @order.address %></h3>
+<%= f.hidden_field :address, :value => @order.address %>
+<h3><%= @order.name %></h3>
+<%= f.hidden_field :name, :value =>@order.name %>
+
+<%= f.submit '注文を確定する' %>
+
+<% end %>
