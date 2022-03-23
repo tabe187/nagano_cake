@@ -1,14 +1,24 @@
-<h3><%= @customer.last_name + @customer.first_name %>さん会員詳細</h3>
-
-  <h3><%= @customer.id %></h3>
-  <h3><%= @customer.last_name %></h3>
-  <h3><%= @customer.first_name %></h3>
-  <h3><%= @customer.postal_code %></h3>
-  <h3><%= @customer.address %></h3>
-  <h3><%= @customer.telephone_number%></h3>
-  <h3><%= @customer.email %></h3>
-  <h3><%= @customer.is_active %></h3>
-
-  <p><%= link_to "編集する", edit_admin_customer_path %></p>
-  <p><%= link_to "注文履歴一覧を見る", admin_items_path %></p>
+<main>
+　<div class="container px-5 px-sm-0">      
+      
+      <h5><%= @customer.last_name + @customer.first_name %>さん会員詳細</h5>
+      
+        会員ID:<%= @customer.id %><br>
+        氏名:<%= @customer.last_name + @customer.first_name%><br>
+        フリガナ:<%= @customer.last_name_kana + @customer.first_name_kana %><br>
+        郵便番号:<%= @customer.postal_code %><br>
+        住所:<%= @customer.address %><br>
+        電話番号:<%= @customer.telephone_number%><br>
+        メールアドレス:<%= @customer.email %><br>
+        会員ステータス:<% if @customer.is_deleted == true %>
+                        有効
+                       <% else %>
+                        退会
+                      <% end %>
+            
+      
+        <p><%= link_to "編集する", edit_admin_customer_path %></p>
+        <p><%= link_to "注文履歴一覧を見る", admin_items_path %></p>
+  </div>
+</main>        
 

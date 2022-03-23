@@ -1,6 +1,9 @@
-<h2>ログイン</h2>
+<main>
+<div class="container px-5 px-sm-0">
+
+<h5>ログイン</h5>
 <%= form_with model: @customer, url: customer_session_path do |f| %>
-<h2>会員の方はこちらからログイン</h2>
+<h7>会員の方はこちらからログイン</h7>
 
   <div class="field">
     <%= f.label :email, "メールアドレス" %><br />
@@ -20,13 +23,13 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" %>
   </div>
-  <%= render "public/shared/links" %>
 <% end %>
 
-<h2>会員登録がお済みでない方</h2>
+<h7>会員登録がお済みでない方</h7>
 
 <p><%= link_to "こちら", new_customer_registration_path %>　からログインしてください。</p>
 
-
+</div>
+</main>

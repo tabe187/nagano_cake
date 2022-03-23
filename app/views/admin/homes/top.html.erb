@@ -1,2 +1,32 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<main>
+　<div class="container px-5 px-sm-0">
+
+        　 <h4>注文履歴一覧</h4>
+
+            　 <% @orders.each do |order| %>
+            <div class="row">
+                <% @sum = 0 %>
+              <div class="col-xl-4">
+            　  購入日時:<%= link_to order.created_at, admin_order_path(order.id) %>
+            　</div>
+              <div class="col-xl-2">
+            　  購入者:<%= order.name %>
+            　</div>
+            　    <% order.order_details.each do |order_detail| %>
+            　    <% order_detail.amount %>
+            　    <% @sum += order_detail.amount %>
+            　    <% end %>
+              <div class="col-xl-2">
+                個数:<%= @sum %>
+              </div>
+              <div class="col-xl-2">
+            　  <%= order.status_i18n %>
+            　</div>
+            　<p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+            　 <% end %>
+            </div>
+
+
+<%= paginate @orders %>
+  </div>
+</main>

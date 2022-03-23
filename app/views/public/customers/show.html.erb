@@ -1,17 +1,20 @@
-<h1>Customers#show マイページ</h1>
-<h2>登録情報</h2>
-<%= link_to "編集する", customers_edit_path %>
-<h3><%= @customer.last_name %></h3>
-<h3><%= @customer.first_name %></h3>
-<h3><%= @customer.last_name_kana %></h3>
-<h3><%= @customer.first_name_kana %></h3>
-<h3><%= @customer.email %></h3>
-<h3><%= @customer.postal_code %></h3>
-<h3><%= @customer.address %></h3>
-<h3><%= @customer.telephone_number %></h3>
+<main>
+  <div class="container px-5 px-sm-0">
 
-<h2>配送先</h2>
-<h2>注文履歴</h2>
+      <h3>マイページ</h3>
+      <h4>登録情報</h4>
+      <%= link_to "編集する", customers_edit_path %>
+      <p>氏名:<%= @customer.last_name %>　<%= @customer.first_name %><br>
+      フリガナ:<%= @customer.last_name_kana %> <%= @customer.first_name_kana %><br>
+      郵便番号:<%= @customer.postal_code %><br>
+      住所:<%= @customer.address %><br>
+      電話番号:<%= @customer.telephone_number %><br>
+      メールアドレス:<%= @customer.email %></p>
+      
+      <h4>配送先</h4>
+      <%= link_to "一覧を見る", addresses_path %>
+      <h4>注文履歴</h4>
+      <%= link_to "一覧を見る", orders_path %>
 
-
-
+  </div>
+</main>

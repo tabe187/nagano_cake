@@ -1,8 +1,21 @@
-<h1>会員一覧</h1>
-<% @customers.each do |customer| %>
-  <h3><%= customer.id %></h3>
-  <h3><%= link_to customer.last_name, admin_customer_path(customer.id) %></h3>
-  <h3><%= customer.first_name %></h3>
-  <h3><%= customer.email %></h3>
-  <h3><%= customer.is_active %></h3>
-<% end %>
+<main>
+　<div class="container px-5 px-sm-0">
+
+    <h5>会員一覧</h5>
+    <% @customers.each do |customer| %>
+     <div class="row">
+      ID:<%= customer.id %>
+      氏名:<%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id) %>
+      メールアドレス:<%= customer.email %>
+      <p>ステータス：
+            <% if customer.is_deleted == true %>
+             有効
+            <% else %>
+             退会
+            <% end %>
+            </p>
+     </div>
+    <% end %>
+    <%= paginate @customers %>
+  </div>
+</main>

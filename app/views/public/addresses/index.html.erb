@@ -1,31 +1,53 @@
-<h1>配送先登録/一覧</h1>
-<%= form_with model: @address, url: addresses_path, local: true do |f| %>
-
-  <div class="field">
-    <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br>
-    <%= f.text_field :postal_code %>
+<main>
+  <div class="container px-5 px-sm-0">
+    <div class="col-md-10 offset-md-1 text-left">
+        
+        <%= form_with model: @address, url: addresses_path, local: true do |f| %>
+        <h5>配送先登録/一覧</h5>
+         <div class="row">
+          <div class="col-xl-3">
+            <div class="field">
+              <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br>
+            </div> 
+          </div> 
+          <div class="col-xl-3">  
+              <%= f.text_field :postal_code %>
+          </div>  
+         </div>
+         <div class="row">
+          <div class="col-xl-3">
+            <div class="field">
+              <%= f.label :address, "住所" %><br>
+            </div> 
+          </div> 
+          <div class="col-xl-3">
+              <%= f.text_field :address %>
+          </div>
+         </div> 
+         <div class="row">
+          <div class="col-xl-3">
+            <div class="field">
+              <%= f.label :name, "宛名" %><br>
+            </div> 
+          </div>
+          <div class="col-xl-3">
+              <%= f.text_field :name %>
+          </div>
+         </div>  
+            <%= f.submit '新規登録' %>
+          <% end %> 
+        
+        <h5>配送先一覧</h5>
+        
+        <% @addresses.each do |address| %>
+        <%= address.postal_code %>
+        <%= address.address %>
+        <%= address.name %>
+        <%= link_to "編集する", edit_address_path(address.id) %><br>
+        <%= link_to "削除する", address_path(address.id),  method: :delete %><br>
+        <p>--------------------------------------------------------------------</p>
+        <% end %>
+   </div> 
   </div>
-  
-  <div class="field">
-    <%= f.label :address, "住所" %><br>
-    <%= f.text_field :address %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :name, "宛名" %><br>
-    <%= f.text_field :name %>
-  </div>
-  <%= f.submit '新規登録' %>
-<% end %> 
-
-<h2>配送先一覧</h2>
-
-<% @addresses.each do |address| %>
-<h3><%= address.postal_code %></h3>
-<h3><%= address.address %></h3>
-<h3><%= address.name %></h3>
-<%= link_to "編集する", edit_address_path(address.id) %><br>
-<%= link_to "削除する", address_path(address.id),  method: :delete %><br>
-<p>----------------------------------</p>
-<% end %>
+</main>
 

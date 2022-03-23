@@ -1,2 +1,43 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<main>
+　<div class="container px-5 px-sm-0">
+
+　 <h4>注文履歴詳細</h4>
+　  <div class="row">
+    　  購入者:<%= @order.customer.last_name + @order.customer.first_name  %><br>
+    　  注文日:<%= @order.created_at %><br>
+    　  配送先:<%= @order.postal_code + @order.address %><br>
+    　  <%= @order.name %><br>
+    　  支払方法:<%= @order.payment_method_i18n %><br>
+    　  注文ステータス:<%= @order.status_i18n %><br>
+    </div>
+<p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+   <% @sum = 0 %>
+    <div class="row">
+          <% @order.order_details.each do |order_detail| %>
+        <div class="col-xl-2">
+            <p>商品名：<%= order_detail.item.name %></p>
+        </div>
+        <div class="col-xl-2">
+            <p>税込価格：<%= (order_detail.price * 1.1).floor %>円</p>
+        </div>
+        <div class="col-xl-2">
+            <p>数量：<%= order_detail.amount %></p>
+        </div>
+
+        <div class="col-xl-2">
+            <p>小計：<%= (order_detail.price * 1.1).floor * order_detail.amount %>円</p>
+        </div>
+        <% @sum += (order_detail.price * 1.1).floor * order_detail.amount %>
+        <div class="col-xl-3">
+            <p>製作ステータス：<%= order_detail.making_status_i18n %></p>
+        </div>
+        <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+          <% end %>
+    </div>
+
+    商品合計: <%= @sum %>円
+    送料: 800円
+    請求金額合計:<%= @sum + 800 %>円
+
+  </div>
+</main>

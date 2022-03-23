@@ -1,21 +1,42 @@
-<h1>注文履歴詳細</h1>
+<main>
+   <div class="container px-5 px-sm-0">            
+            
+            <h4>注文履歴詳細</h4>
+            <h6>注文詳細</h6>
+            注文日：<%= @orders.created_at.strftime('%Y/%m/%d') %><br>
+            配送先：<%= @orders.postal_code %><br>
+            <%= @orders.address %><br>
+            <%= @orders.name %><br>
+            支払方法：<%= @orders.payment_method_i18n %><br>
+            ステータス：<%= @orders.status_i18n %><br>
+            <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+            <h6>請求情報</h6>
+            商品合計：<%= @orders.billing_amount - @orders.shipping_cost %>円<br>
+            配送料：<%= @orders.shipping_cost %>円<br>
+            ご請求金額：<%= @orders.billing_amount %>円<br>
+            
+　　　　　　<p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+            <h6>注文内容</h6>   
+               <% @order_details.each do |order_detail| %>
+             <div class="row"> 
+               <div class="col-xl-2">
+                  商品名：<%= order_detail.item.name %><br>
+               </div>
+               <div class="col-xl-2">   
+                 単価(税込)：<%= (order_detail.item.price.to_i * 1.1).floor %>円<br>
+               </div>
+               <div class="col-xl-2">    
+                  個数：<%= order_detail.amount %>個<br>
+               </div>
+               <div class="col-xl-2">    
+                  小計：<%= (order_detail.item.price.to_i * 1.1).floor * order_detail.amount %>円<br>
+               </div>
+              </div>   
+               <% end %>
+ 
+                  
+            
 
-<h2>注文日<%= @orders.created_at %></h2><br>
-<h2>配送先<%= @orders.postal_code %></h2><br>
-<h2><%= @orders.address %></h2><br>
-<h2><%= @orders.name %></h2><br>
-<h2>支払方法<%= @orders.payment_method %></h2><br>
-<h2>ステータス<%= @orders.status %></h2><br>
-<h2>商品合計<%= @orders.billing_amount - @orders.shipping_cost %>円</h2><br>
-<h2>配送料<%= @orders.shipping_cost %>円</h2><br>
-<h2>ご請求金額<%= @orders.billing_amount %>円</h2><br>
-
-
-   <% @order_details.each do |order_detail| %>
-      <h2><%= order_detail.item.name %></h2><br>
-      <h2><%= (order_detail.item.price.to_i * 1.1).floor %>円</h2><br>
-      <h2><%= order_detail.amount %>個</h2><br>
-      <h2><%= (order_detail.item.price.to_i * 1.1).floor * order_detail.amount %>円</h2><br>
-   <% end %>    
-
+   </div>
+</main>
 
