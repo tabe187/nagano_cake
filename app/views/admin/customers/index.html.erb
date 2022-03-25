@@ -8,7 +8,7 @@
       氏名:<%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id) %>
       メールアドレス:<%= customer.email %>
       <p>ステータス：
-            <% if customer.is_deleted == true %>
+            <% if customer.is_deleted == false %>
              有効
             <% else %>
              退会

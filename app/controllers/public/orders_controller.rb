@@ -1,9 +1,14 @@
 class Public::OrdersController < ApplicationController
   def new
-    @order = Order.new
-    @customer = current_customer
-    @addresses = Address.all
-    @address = Address.new
+    if current_customer.cart_items.empty?
+      flash[:notice] = 'カートが空です'
+      redirect_to cart_items_path
+    end
+      @order = Order.new
+      @customer = current_customer
+      @addresses = Address.all
+      @address = Address.new
+
   end
 
   def create
@@ -44,13 +49,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
-    @order_details = OrderDetail.all
+    @customer = current_customer
+    @order = Order.all
   end
 
   def show
-    @orders = Order.find(params[:id])
-    @order_details = OrderDetail.all
+    @order = Order.find(params[:id])
   end
 
   private

@@ -10,7 +10,7 @@
         住所:<%= @customer.address %><br>
         電話番号:<%= @customer.telephone_number%><br>
         メールアドレス:<%= @customer.email %><br>
-        会員ステータス:<% if @customer.is_deleted == true %>
+        会員ステータス:<% if @customer.is_deleted == false %>
                         有効
                        <% else %>
                         退会

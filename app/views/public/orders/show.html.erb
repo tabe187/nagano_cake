@@ -3,21 +3,21 @@
             
             <h4>注文履歴詳細</h4>
             <h6>注文詳細</h6>
-            注文日：<%= @orders.created_at.strftime('%Y/%m/%d') %><br>
-            配送先：<%= @orders.postal_code %><br>
-            <%= @orders.address %><br>
-            <%= @orders.name %><br>
-            支払方法：<%= @orders.payment_method_i18n %><br>
-            ステータス：<%= @orders.status_i18n %><br>
+            注文日：<%= @order.created_at.strftime('%Y/%m/%d') %><br>
+            配送先：<%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %><br>
+            支払方法：<%= @order.payment_method_i18n %><br>
+            ステータス：<%= @order.status_i18n %><br>
             <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
             <h6>請求情報</h6>
-            商品合計：<%= @orders.billing_amount - @orders.shipping_cost %>円<br>
-            配送料：<%= @orders.shipping_cost %>円<br>
-            ご請求金額：<%= @orders.billing_amount %>円<br>
+            商品合計：<%= @order.billing_amount - @order.shipping_cost %>円<br>
+            配送料：<%= @order.shipping_cost %>円<br>
+            ご請求金額：<%= @order.billing_amount %>円<br>
             
 　　　　　　<p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
             <h6>注文内容</h6>   
-               <% @order_details.each do |order_detail| %>
+               <% @order.order_details.each do |order_detail| %>
              <div class="row"> 
                <div class="col-xl-2">
                   商品名：<%= order_detail.item.name %><br>

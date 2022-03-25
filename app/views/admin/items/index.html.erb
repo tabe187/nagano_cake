@@ -1,6 +1,7 @@
 <main>
 <div class="container px-5 px-sm-0">
-  <h4>商品一覧</h4>　
+  <h4>商品一覧</h4>
+  <%= link_to '新規登録', new_admin_item_path %>
  　   <div class="row">
           <% @items.each do |item| %>
         <div class="col-xl-2">
@@ -10,7 +11,7 @@
             <p>商品名：<%= link_to item.name, admin_item_path(item.id) %></p>
         </div>   
         <div class="col-xl-2">    
-            <p>税込価格：<%= item.price %></p>
+            <p>税込価格：<%= (item.price.to_i * 1.1).floor %></p>
         </div>   
         <div class="col-xl-2">    
             <p>ジャンル: <%= item.genre.name %></p>

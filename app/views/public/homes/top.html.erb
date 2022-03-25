@@ -19,7 +19,9 @@
                 <div class="flex-container">
                   <div class="flex-item">
                       <div class="image-wrap">
-                      <%= image_tag item.get_item_image(100, 100) %>
+                      <%= link_to item_path(item.id) do %>
+                            <%= image_tag item.get_item_image(100,100) %>
+                        <% end %>  
                       <p><%= item.name %></p>
                       <p>¥<%= item.price %></p>
                       </div>

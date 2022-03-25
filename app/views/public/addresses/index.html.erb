@@ -39,10 +39,11 @@
         
         <h5>配送先一覧</h5>
         
-        <% @addresses.each do |address| %>
+        <% @customer.addresses.each do |address| %>
         <%= address.postal_code %>
         <%= address.address %>
         <%= address.name %>
+
         <%= link_to "編集する", edit_address_path(address.id) %><br>
         <%= link_to "削除する", address_path(address.id),  method: :delete %><br>
         <p>--------------------------------------------------------------------</p>

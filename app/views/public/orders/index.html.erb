@@ -1,37 +1,37 @@
 <main>
    <div class="container px-5 px-sm-0">
-      
+
 
 
                <h1>注文履歴一覧</h1>
       　　<div class="row">
-               <% @orders.each do |order| %>
-            <div class="col-xl-2">   
+               <% @customer.orders.each do |order| %>
+            <div class="col-xl-2">
                <%= order.created_at.strftime('%Y/%m/%d') %><br>
             </div>
             <div class="col-xl-2">
                <%= order.postal_code %><br>
                <%= order.address%><br>
                <%= order.name%><br>
-            </div>  
+            </div>
             <div class="col-xl-2">
-                  <% @order_details.each do |order_detail| %>
-                     <%= order_detail.item.name%><br>
-                  <% end %> 
-            </div>  
-            <div class="col-xl-2">  
+                  <% order.order_details.each do |order_detail| %>
+                     <%= order_detail.item.name %><br>
+                  <% end %>
+            </div>
+            <div class="col-xl-2">
                <%= order.billing_amount %>円<br>
-            </div>  
-            <div class="col-xl-2">  
+            </div>
+            <div class="col-xl-2">
                <%= order.status_i18n %><br>
-            </div>  
-            <div class="col-xl-2">    
+            </div>
+            <div class="col-xl-2">
                <%= link_to "表示する", order_path(order.id) %><br>
-            </div>       
-            <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>   
+            </div>
+            <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
                <% end %>
-            
-         </div>    
+
+         </div>
 
 
    </div>

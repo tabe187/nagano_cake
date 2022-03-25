@@ -27,9 +27,9 @@
         <%= f.text_field :email, autofocus: true, id:"inputEmail", placeholder:"メールアドレス" %><br>
         
         <label for="inputIs_deleted">会員ステータス</label><br>
-        <%= f.radio_button :is_deleted, :true %>
+        <%= f.radio_button :is_deleted, :false %>
         <p>有効</p>
-        <%= f.radio_button :is_deleted, :false %> <br>
+        <%= f.radio_button :is_deleted, :true %> <br>
         <p>退会</p>
       
         <%= f.submit "変更を保存する" %>
