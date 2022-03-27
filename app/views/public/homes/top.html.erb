@@ -1,8 +1,12 @@
 <main>
 <div class="container px-5 px-sm-0">
-    <!--<div class="col-md-1" >  
-    </div>-->
-      <div class="col-md-10 offset-md-1 text-center">
+    <div class="col-md-2" >
+    ジャンル検索<br>
+    <% @genres.each do |genre| %>
+    <%= link_to genre.name, genre_path(genre.id) %><br>
+    <% end %>
+    </div>
+      <div class="col-md-9 offset-md-1 text-center">
         <div class= "main-visual">
           <div class= "main-visual-content">
           <p>ようこそ、ながのCAKEへ！<br>
@@ -15,19 +19,11 @@
           <h4>新着商品</h4>
           <div class="row">
               <% @items.last(4).each do |item| %>
-              <div class="col">
-                <div class="flex-container">
-                  <div class="flex-item">
-                      <div class="image-wrap">
-                      <%= link_to item_path(item.id) do %>
+              <%= link_to item_path(item.id) do %>
                             <%= image_tag item.get_item_image(100,100) %>
                         <% end %>  
                       <p><%= item.name %></p>
                       <p>¥<%= item.price %></p>
-                      </div>
-                  </div>    
-                </div>      
-              </div>
               <% end %>
           </div>
           <p class="text-right"><%= link_to "全ての商品を見る", items_path %></p>

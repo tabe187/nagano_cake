@@ -6,7 +6,13 @@ class Public::CartItemsController < ApplicationController
   def create
    @cart_item = CartItem.new(cart_item_params)
    @cart_item.customer_id = current_customer.id
-   @cart_item.save
+   @item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
+    if @item
+       new_amount = @cart_item.amount.to_i + @item.amount.to_i
+       @item.update(amount: new_amount)
+    else
+       @cart_item.save
+    end
    redirect_to cart_items_path
   end
 

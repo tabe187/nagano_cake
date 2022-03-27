@@ -3,7 +3,17 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
   end
-  
+
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+     if @order.status == "payment_confirm"
+        @order.order_details.update(making_status: "production_pending")
+     end
+
+    redirect_to admin_order_path(@order.id)
+  end
+
   private
 
   def order_params
@@ -13,5 +23,5 @@ class Admin::OrdersController < ApplicationController
   def order_detail_params
     params.require(:order_detail).permit(:order_id, :item_id, :price, :amount, :making_status)
   end
-  
+
 end

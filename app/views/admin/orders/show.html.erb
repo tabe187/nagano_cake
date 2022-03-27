@@ -8,7 +8,10 @@
     　  配送先:<%= @order.postal_code + @order.address %><br>
     　  <%= @order.name %><br>
     　  支払方法:<%= @order.payment_method_i18n %><br>
-    　  注文ステータス:<%= @order.status_i18n %><br>
+    　  <%= form_with model: @order, url: admin_order_path(@order.id), local: true do |f| %><br>
+    　  注文ステータス:<%= f.select :status, Order.statuses.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]} %><br>
+    　  <%= f.submit '更新' %>
+    　  <% end %>
     </div>
 <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
    <% @sum = 0 %>
@@ -29,7 +32,10 @@
         </div>
         <% @sum += (order_detail.price * 1.1).floor * order_detail.amount %>
         <div class="col-xl-3">
-            <p>製作ステータス：<%= order_detail.making_status_i18n %></p>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), local: true do |f| %><br>
+    　       制作ステータス:<%= f.select :making_status, OrderDetail.making_statuses.keys.map{|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %><br>
+    　       <%= f.submit '更新' %>
+    　       <% end %>
         </div>
         <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
           <% end %>
