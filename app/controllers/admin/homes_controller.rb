@@ -3,7 +3,7 @@ class Admin::HomesController < ApplicationController
   def top
     @orders = Order.page(params[:page])
   end
-  
+
   private
 
   def order_params
@@ -13,5 +13,4 @@ class Admin::HomesController < ApplicationController
   def order_detail_params
     params.require(:order_detail).permit(:order_id, :item_id, :price, :amount, :making_status)
   end
-  
 end

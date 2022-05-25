@@ -4,11 +4,10 @@ class Public::OrdersController < ApplicationController
       flash[:notice] = 'カートが空です'
       redirect_to cart_items_path
     end
-      @order = Order.new
-      @customer = current_customer
-      @addresses = Address.all
-      @address = Address.new
-
+    @order = Order.new
+    @customer = current_customer
+    @addresses = Address.all
+    @address = Address.new
   end
 
   def create
@@ -31,18 +30,18 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_items = CartItem.all
     @order = Order.new(order_params)
-      if params[:order][:select_address] == "0"
-        @order.postal_code = current_customer.postal_code
-        @order.address = current_customer.address
-        @order.name =  current_customer.last_name + current_customer.first_name
-      elsif params[:order][:select_address] == "1"
-        @address = Address.find(params[:order][:address_id])
-        @order.postal_code = @address.postal_code
-        @order.address = @address.address
-        @order.name = @address.name
-      else
-        render :confirm
-      end
+    if params[:order][:select_address] == "0"
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name =  current_customer.last_name + current_customer.first_name
+    elsif params[:order][:select_address] == "1"
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+    else
+      render :confirm
+    end
   end
 
   def thanks
@@ -66,8 +65,4 @@ class Public::OrdersController < ApplicationController
   def order_detail_params
     params.require(:order_detail).permit(:order_id, :item_id, :price, :amount, :making_status)
   end
-
 end
-
-
-
